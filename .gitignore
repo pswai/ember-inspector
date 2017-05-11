@@ -21,3 +21,4 @@ testem.log
 config/secrets.json
 
 /.mozilla-addon-sdk
+.idea/
