@@ -1,6 +1,7 @@
 import React from 'npm:react';
 import PropTypes from 'npm:prop-types';
 import classNames from 'npm:classnames';
+import ClearButton from './clear-button';
 
 class PromiseTreeToolbar extends React.Component {
   constructor(props) {
@@ -48,13 +49,8 @@ class PromiseTreeToolbar extends React.Component {
     } = this.props;
 
     return (
-      <div className='toolbar'>
-        <button
-          type="button"
-          className="toolbar__icon-button js-clear-promises-btn"
-          title="Clear"
-          onClick={onClearButtonClick}
-        />
+      <div className="toolbar">
+        <ClearButton customClass="js-clear-promises-btn" onClick={onClearButtonClick}/>
 
         <div className="toolbar__search js-promise-search">
           <input onChange={this.handleSearchChange} value={searchValue} placeholder="Search"/>

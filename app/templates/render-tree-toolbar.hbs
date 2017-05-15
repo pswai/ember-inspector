@@ -1,10 +1,5 @@
 <div class="toolbar">
-  <button
-    type="button"
-    class="toolbar__icon-button"
-    action={{action 'clearProfiles'}}
-    title="Clear"
-  ></button>
+  {{clear-button onClick=(action 'clearProfiles')}}
   <div class="toolbar__search js-render-profiles-search">
     {{input value=searchField placeholder="Search"}}
   </div>
