@@ -70,7 +70,7 @@ export default Controller.extend({
   isPendingFilter: equal('filter', 'pending'),
   isFulfilledFilter: equal('filter', 'fulfilled'),
 
-  search: null,
+  search: '',
   effectiveSearch: null,
 
   searchChanged: observer('search', function() {
@@ -99,7 +99,11 @@ export default Controller.extend({
       this.get('port').send('promise:tracePromise', { promiseId: promise.get('guid') });
     },
     updateInstrumentWithStack(bool) {
+      this.set('instrumentWithStack', bool);
       this.port.send('promise:setInstrumentWithStack', { instrumentWithStack: bool });
+    },
+    updateSearchValue(value) {
+      this.set('search', value);
     },
     toggleExpand(promise) {
       let isExpanded = !promise.get('isExpanded');

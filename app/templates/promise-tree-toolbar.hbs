@@ -1,31 +1,14 @@
-<div class="toolbar">
-  {{clear-button action="clear" classNames="toolbar__icon-button js-clear-promises-btn"}}
-
-  <div class="toolbar__search js-promise-search">
-    {{input value=search placeholder="Search"}}
-  </div>
-
-  <button class="{{if noFilter 'active'}} toolbar__radio js-filter" {{action "setFilter" "all"}}>
-    All
-  </button>
-
-  <div class="divider"></div>
-
-  <button class="{{if isRejectedFilter 'active'}} toolbar__radio js-filter" {{action "setFilter" "rejected"}} >Rejected</button>
-  <button class="{{if isPendingFilter 'active'}} toolbar__radio js-filter" {{action "setFilter" "pending"}} >Pending</button>
-  <button class="{{if isFulfilledFilter 'active'}} toolbar__radio js-filter" {{action "setFilter" "fulfilled"}} >Fulfilled</button>
-
-  <div class="divider"></div>
-
-  <div class="toolbar__checkbox js-with-stack">
-    {{action-checkbox on-update="updateInstrumentWithStack" checked=instrumentWithStack id="instrument-with-stack"}} <label for="instrument-with-stack">Trace promises</label>
-  </div>
-
-
-  {{! if should refresh the refresh button will be in the middle of the of the tab }}
-  {{#unless shouldRefresh}}
-    <div class="divider"></div>
-    <button class="js-toolbar-page-refresh-btn" {{action "refreshPage"}}>Reload</button>
-  {{/unless}}
-
-</div>
+{{!-- Missing the refreshPage action --}}
+{{promise-tree-toolbar-internal
+  setFilter=(action 'setFilter')
+  updateInstrumentWithStack=(action 'updateInstrumentWithStack')
+  onSearchChange=(action 'updateSearchValue')
+  onClearButtonClick=(action 'clear')
+  shouldRefresh=shouldRefresh
+  instrumentWithStack=instrumentWithStack
+  noFilter=noFilter
+  isRejectedFilter=isRejectedFilter
+  isPendingFilter=isPendingFilter
+  isFulfilledFilter=isFulfilledFilter
+  searchValue=search
+}}

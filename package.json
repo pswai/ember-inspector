@@ -89,6 +89,7 @@
     "yauzl": "^2.4.1"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "ember-new-computed": "^1.0.0"
   }
 }

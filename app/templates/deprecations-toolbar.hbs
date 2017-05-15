@@ -1,5 +1,10 @@
 <div class="toolbar">
-  {{clear-button action="clear" classNames="toolbar__icon-button js-clear-deprecations-btn"}}
+  <button
+    type="button"
+    class="toolbar__icon-button js-clear-deprecations-btn"
+    action={{action 'clear'}}
+    title="Clear"
+  ></button>
 
   <div class="toolbar__search js-deprecations-search">
     {{input value=searchVal placeholder="Search"}}
