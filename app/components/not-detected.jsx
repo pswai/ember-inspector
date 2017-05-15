@@ -2,7 +2,7 @@ import React from 'npm:react';
 import PropTypes from 'npm:prop-types';
 
 const NotDetected = (props) => {
-  const { description, reasonsTitle, children } = props;
+  const { description, children } = props;
 
   return (
     <div className="error-page js-error-page">
@@ -11,9 +11,7 @@ const NotDetected = (props) => {
           <div className="error-page__title js-error-page-title">{description} not detected!</div>
         </div>
         <div className="error-page__reasons">
-          <div className="error-page__reasons-title">
-            {reasonsTitle ? reasonsTitle : 'Here are some common reasons this happens:'}
-          </div>
+          <div className="error-page__reasons-title">Here are some common reasons this happens:</div>
           <ul className="error-page__list">
             {children}
           </ul>
@@ -26,8 +24,7 @@ const NotDetected = (props) => {
 };
 
 NotDetected.propTypes = {
-  description: PropTypes.string.isRequired,
-  reasonsTitle: PropTypes.string
+  description: PropTypes.string.isRequired
 };
 
 export default NotDetected;
