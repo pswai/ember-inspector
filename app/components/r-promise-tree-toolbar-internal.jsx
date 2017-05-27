@@ -1,7 +1,7 @@
 import React from 'npm:react';
 import PropTypes from 'npm:prop-types';
 import classNames from 'npm:classnames';
-import ClearButton from './clear-button';
+import ClearButton from './r-clear-button';
 
 class PromiseTreeToolbar extends React.Component {
   constructor(props) {
