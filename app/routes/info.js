@@ -1,10 +1,9 @@
 import Ember from "ember";
-import TabRoute from "ember-inspector/routes/tab";
 
 const { RSVP: { Promise }, computed } = Ember;
 const { oneWay } = computed;
 
-export default TabRoute.extend({
+export default Ember.Route.extend({
   version: oneWay('config.VERSION').readOnly(),
 
   model() {
