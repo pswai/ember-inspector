@@ -9,7 +9,7 @@ export default Controller.extend({
   queryParams: ['components'],
   components: alias('options.components'),
   options: {
-    components: false
+    components: true
   },
 
   optionsChanged: on('init', observer('options.components', function() {
@@ -17,7 +17,7 @@ export default Controller.extend({
   })),
 
   actions: {
-    previewLayer({ value: { objectId, elementId, renderNodeId } }) {
+    previewLayer({ objectId, elementId, renderNodeId }) {
       // We are passing all of objectId, elementId, and renderNodeId to support post-glimmer 1, post-glimmer 2, and root for
       // post-glimmer 2
       this.get('port').send('view:previewLayer', { objectId, renderNodeId, elementId });

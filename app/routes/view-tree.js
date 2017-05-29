@@ -24,8 +24,9 @@ export default TabRoute.extend({
   },
 
   setViewTree(options) {
-    let viewArray = topSort(options.tree);
-    this.set('controller.model', viewArray);
+    // let viewArray = topSort(options.tree);
+    // this.set('controller.model', viewArray);
+    this.set('controller.model', normalizeTree(options.tree));
   },
 
   startInspecting() {
@@ -40,6 +41,13 @@ export default TabRoute.extend({
     this.get('port.adapter').inspectDOMElement(elementSelector);
   }
 });
+
+function normalizeTree(tree) {
+  return $.extend({}, {
+    info: tree.value,
+    subTrees: tree.children.map(normalizeTree)
+  });
+}
 
 function topSort(tree, list) {
   list = list || [];
