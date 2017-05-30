@@ -23,7 +23,10 @@ const ComponentTree = (props) => {
   if (!subTrees || subTrees.length < 1) {
     return (
       <ul style={styles.list}>
-        <li>{`{{${info.name}}}`} {!info.isComponent && '(Not Component)'}</li>
+        <li
+          onMouseEnter={() => previewLayer(info)}
+          onMouseLeave={hidePreview}
+        >{`{{${info.name}}}`} {!info.isComponent && '(Not Component)'}</li>
       </ul>
     );
   }
@@ -31,10 +34,12 @@ const ComponentTree = (props) => {
   return (
     <ul style={styles.list}>
       <li
-        onMouseEnter={previewLayer}
+        onMouseEnter={() => previewLayer(info)}
         onMouseLeave={hidePreview}
       >{`{{#${info.name}}}`} {!info.isComponent && '(Not Component)'}</li>
-      <li>{subTrees.map((subTree, index) => <ComponentTree key={index} tree={subTree}/>)}</li>
+      <li>{subTrees.map((subTree, index) => (
+        <ComponentTree key={index} tree={subTree} previewLayer={previewLayer} hidePreview={hidePreview}/>
+      ))}</li>
       <li>{`{{/${info.name}}}`}</li>
     </ul>
   );
