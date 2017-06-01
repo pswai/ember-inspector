@@ -1,7 +1,13 @@
-<div style="height: 700px; overflow: auto">
-  {{r-component-tree
-    tree=model
-    previewLayer=(action 'previewLayer')
-    hidePreview=(action 'hidePreview')
-  }}
+<div style="height: 700px; overflow: auto; display: flex">
+  <div style="flex: 2">
+    {{r-component-tree
+      tree=model
+      previewLayer=(action 'previewLayer')
+      hidePreview=(action 'hidePreview')
+      onComponentClick=(action 'selectComponent')
+    }}
+  </div>
+  <div style="flex: 1; border-left: solid 1px #dfdfdf;">
+    {{r-component-detail component=selectedComponent}}
+  </div>
 </div>

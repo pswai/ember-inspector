@@ -16,7 +16,13 @@ export default Controller.extend({
     this.port.send('view:setOptions', { options: this.get('options') });
   })),
 
+  selectedComponent: null,
+
   actions: {
+    selectComponent(info) {
+      this.set('selectedComponent', info);
+    },
+
     previewLayer({ objectId, elementId, renderNodeId }) {
       // We are passing all of objectId, elementId, and renderNodeId to support post-glimmer 1, post-glimmer 2, and root for
       // post-glimmer 2

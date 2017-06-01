@@ -13,7 +13,8 @@ const ComponentTree = (props) => {
   const {
     tree: { info, subTrees },
     previewLayer,
-    hidePreview
+    hidePreview,
+    onComponentClick
   } = props;
 
   if (!info) {
@@ -26,6 +27,7 @@ const ComponentTree = (props) => {
         <li
           onMouseEnter={() => previewLayer(info)}
           onMouseLeave={hidePreview}
+          onClick={() => onComponentClick(info)}
         >{`{{${info.name}}}`} {!info.isComponent && '(Not Component)'}</li>
       </ul>
     );
@@ -36,9 +38,16 @@ const ComponentTree = (props) => {
       <li
         onMouseEnter={() => previewLayer(info)}
         onMouseLeave={hidePreview}
+        onClick={() => onComponentClick(info)}
       >{`{{#${info.name}}}`} {!info.isComponent && '(Not Component)'}</li>
       <li>{subTrees.map((subTree, index) => (
-        <ComponentTree key={index} tree={subTree} previewLayer={previewLayer} hidePreview={hidePreview}/>
+        <ComponentTree
+          key={index}
+          tree={subTree}
+          previewLayer={previewLayer}
+          hidePreview={hidePreview}
+          onComponentClick={onComponentClick}
+        />
       ))}</li>
       <li>{`{{/${info.name}}}`}</li>
     </ul>
@@ -47,7 +56,8 @@ const ComponentTree = (props) => {
 
 ComponentTree.propTypes = {
   previewLayer: PropTypes.func,
-  hidePreview: PropTypes.func
+  hidePreview: PropTypes.func,
+  onComponentClick: PropTypes.func
 };
 
 export default ComponentTree;
