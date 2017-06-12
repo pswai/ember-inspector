@@ -87,13 +87,6 @@ export default EmberObject.extend(PortMixin, {
         this.inspectElement(element);
       }
     },
-    setOptions({ options }) {
-      this.set('options', options);
-      if (this.glimmerTree) {
-        this.glimmerTree.updateOptions(options);
-      }
-      this.sendTree();
-    },
     sendModelToConsole(message) {
       let model;
       if (this.glimmerTree) {
@@ -335,7 +328,7 @@ export default EmberObject.extend(PortMixin, {
 
   shouldShowView(view) {
     if (view instanceof Component) {
-      return this.options.components;
+      return true;
     }
     return (this.hasOwnController(view) || this.hasOwnContext(view)) &&
         (!view.get('isVirtual') || this.hasOwnController(view) || this.hasOwnContext(view));
@@ -610,7 +603,7 @@ export default EmberObject.extend(PortMixin, {
       return false;
     }
     return this._nodeHasOwnController(renderNode, parentNode) &&
-        (this.options.components || !(this._nodeIsEmberComponent(renderNode))) &&
+        (!(this._nodeIsEmberComponent(renderNode))) &&
         (this._nodeHasViewInstance(renderNode) || this._nodeHasOwnController(renderNode, parentNode));
   },
 

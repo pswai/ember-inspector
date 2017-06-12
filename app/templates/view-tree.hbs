@@ -8,6 +8,8 @@
     }}
   </div>
   <div style="flex: 1; border-left: solid 1px #dfdfdf;">
-    {{r-component-detail component=selectedComponent}}
+    {{#if selectedComponent}}
+      {{r-component-detail component=selectedComponent}}
+    {{/if}}
   </div>
 </div>

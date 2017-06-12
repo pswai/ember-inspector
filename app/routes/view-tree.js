@@ -48,16 +48,3 @@ function normalizeTree(tree) {
     subTrees: tree.children.map(normalizeTree)
   });
 }
-
-function topSort(tree, list) {
-  list = list || [];
-  let view = $.extend({}, tree);
-  view.parentCount = view.parentCount || 0;
-  delete view.children;
-  list.push(view);
-  tree.children.forEach(child => {
-    child.parentCount = view.parentCount + 1;
-    topSort(child, list);
-  });
-  return list;
-}

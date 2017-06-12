@@ -1,20 +1,10 @@
 import Ember from "ember";
-const { computed, Controller, on, observer, inject: { controller } } = Ember;
-const { alias } = computed;
+const { Controller, inject: { controller } } = Ember;
 
 export default Controller.extend({
   application: controller(),
   pinnedObjectId: null,
   inspectingViews: false,
-  queryParams: ['components'],
-  components: alias('options.components'),
-  options: {
-    components: true
-  },
-
-  optionsChanged: on('init', observer('options.components', function() {
-    this.port.send('view:setOptions', { options: this.get('options') });
-  })),
 
   selectedComponent: null,
 

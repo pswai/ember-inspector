@@ -247,31 +247,6 @@ test("Inspecting views on hover", async function(assert) {
   assert.deepEqual(messageSent.message, { inspect: false });
 });
 
-test("Configuring which views to show", async function(assert) {
-  let messageSent = null;
-  port.reopen({
-    send(name, message) {
-      messageSent = { name, message };
-    }
-  });
-
-  await visit('/');
-  let checkbox = find('.js-filter-components input');
-  checkbox.prop('checked', true);
-  checkbox.trigger('change');
-  await wait();
-  assert.equal(messageSent.name, 'view:setOptions');
-  assert.deepEqual(messageSent.message.options, { components: true });
-  await wait();
-  checkbox = find('.js-filter-all-views input');
-  checkbox.prop('checked', true);
-  checkbox.trigger('change');
-  await wait();
-  assert.equal(messageSent.name, 'view:setOptions');
-  assert.deepEqual(messageSent.message.options, { components: true });
-  await wait();
-});
-
 test("Inspecting a model", async function(assert) {
   let messageSent = null;
   port.reopen({
