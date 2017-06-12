@@ -6,11 +6,26 @@ export default Controller.extend({
   pinnedObjectId: null,
   inspectingViews: false,
 
+  init() {
+    this._super(...arguments);
+
+    const port = this.get('port');
+    port.on('objectInspector:updateObject', this, this.updateObject);
+  },
+
+  updateObject(options) {
+    console.log(options);
+  },
+
   selectedComponent: null,
 
   actions: {
     selectComponent(info) {
       this.set('selectedComponent', info);
+
+      if (info.viewClass) {
+        this.send('inspect', info.objectId);
+      }
     },
 
     previewLayer({ objectId, elementId, renderNodeId }) {
